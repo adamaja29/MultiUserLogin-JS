@@ -34,7 +34,17 @@ Content-Type: application/json
 
 ###
 //delete user
-DELETE  http://localhost:5000/users/43057950-e3ed-4f9d-ba59-5808cad02a6e
+DELETE  http://localhost:5000/users/fc02af36-67ca-47dd-9f9e-4e7a574fbb28
+
+###
+//login admin
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "12345678"
+}
 
 ###
 //login user
@@ -53,3 +63,19 @@ GET http://localhost:5000/me
 ###
 //logout user
 DELETE http://localhost:5000/logout
+
+
+
+###
+//Get all products
+GET http://localhost:5000/product
+
+###
+//Post product
+POST http://localhost:5000/product
+Content-Type: application/json
+
+{
+    "name": "tes6",
+    "price": "234"
+}
