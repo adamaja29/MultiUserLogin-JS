@@ -1,0 +1,55 @@
+//create user
+POST http://localhost:5000/users 
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "12345678",
+    "confPassword": "12345678",
+    "role": "admin"
+}
+
+
+###
+//get all users
+GET http://localhost:5000/users
+
+###
+//get user by id
+GET http://localhost:5000/users/cbe79fcd-71e9-40e3-b144-681c154662e7
+
+###
+//update user
+PATCH  http://localhost:5000/users/f9743112-12ad-4f1b-a30e-c545c13bc289
+Content-Type: application/json
+
+{
+    "name": "Adam ",
+    "email": "adam@gmail.com",
+    "password": "",
+    "confPassword": "",
+    "role": "user"
+}
+
+###
+//delete user
+DELETE  http://localhost:5000/users/43057950-e3ed-4f9d-ba59-5808cad02a6e
+
+###
+//login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "adamnur@gmail.com",
+    "password": "12345678"
+}
+
+###
+//get user by token
+GET http://localhost:5000/me
+
+###
+//logout user
+DELETE http://localhost:5000/logout
