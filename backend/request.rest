@@ -72,8 +72,7 @@ GET http://localhost:5000/product
 
 ###
 //Get single products
-GET http://localhost:5000/product/7fdc580e-ae43-49eb-8e54-292fa692d227
-
+GET http://localhost:5000/product/25bafc09-97b4-4170-9032-f9852cbbb252
 
 ###
 //Post product

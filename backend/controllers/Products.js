@@ -56,7 +56,7 @@ export const getProductsById = async(req, res) => {
             response = await Product.findOne({
                 attributes: ['uuid', 'name', 'price'],
                 where: {
-                    [Op.add]:[{id: Product.id}, {userId: req.userid}]
+                    [Op.and]:[{id: product.id}, {userId: req.userId}]
                 },
                 include:[{
                     model: User,
