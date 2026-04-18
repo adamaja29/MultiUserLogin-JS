@@ -84,10 +84,60 @@ export const createProducts = async(req, res) => {
     }
 }
 
-export const updateProducts = (req, res) => {
-    
+export const updateProducts = async(req, res) => {
+    try {
+        const product = await Product.findOne({
+            where: {
+                uuid: req.params.id
+            }
+        });
+        if(!product) return res.status(404).json({msg: "Data tidak ditemukan"});
+        const {name, price} = req.body;
+        if(req.role === "admin") {
+            await Product.update({name, price},{
+                where:{
+                    id: product.id
+                }
+            });
+        }else{
+            if(req.userId !== product.userId) return res.status(403).json({msg: "akses ditolak"})
+            await Product.update({name, price},{
+                where: {
+                    [Op.and]:[{id: product.id}, {userId: req.userId}]
+                }, 
+            }); 
+        }
+        res.status(200).json({msg: "Update product succesfully"});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 
-export const deleteProducts = (req, res) => {
-    
+export const deleteProducts = async(req, res) => {
+    try {
+        const product = await Product.findOne({
+            where: {
+                uuid: req.params.id
+            }
+        });
+        if(!product) return res.status(404).json({msg: "Data tidak ditemukan"});
+        
+        if(req.role === "admin") {
+            await Product.destroy({
+                where:{
+                    id: product.id
+                }
+            });
+        }else{
+            if(req.userId !== product.userId) return res.status(403).json({msg: "akses ditolak"})
+            await Product.destroy({
+                where: {
+                    [Op.and]:[{id: product.id}, {userId: req.userId}]
+                }, 
+            }); 
+        }
+        res.status(200).json({msg: "Delete product succesfully"});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }

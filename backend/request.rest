@@ -85,3 +85,15 @@ Content-Type: application/json
 }
 
 ###
+//Update product
+PATCH  http://localhost:5000/product/25bafc09-97b4-4170-9032-f9852cbbb252
+Content-Type: application/json
+
+{
+    "name": "baru6",
+    "price": "23456"
+}
+
+###
+//Delete product
+DELETE  http://localhost:5000/product/ce46afd8-e66c-4784-9d9c-c1160113e7b7
